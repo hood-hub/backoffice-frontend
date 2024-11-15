@@ -1,0 +1,56 @@
+.onboardSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    
+}
+
+.onboard_container {
+    width: 42rem;
+    height: 37.6rem;
+    border: 1px solid #F1F1F3;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 2rem; 
+}
+
+.onboard_wrapper {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.onboard_wrapper h2 {
+    font-size: 3rem;
+    line-height: 3.6rem;
+    font-weight: 150;
+    padding: 2.4rem;
+    color: #101828;
+}
+
+.getStartedButton {
+    width: 36rem;
+    margin-bottom: 3.8rem;
+}
+
+.onboard_wrapper {
+    color: #475467;
+    font-size: 1.4rem;
+    font-weight: 100;
+}
+
+.onBoard_input {
+    width: 36rem;
+}
+.onboard_wrapper p span {
+    color: #6A0DAD;
+    
+}

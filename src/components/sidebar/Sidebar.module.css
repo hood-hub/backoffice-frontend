@@ -1,0 +1,90 @@
+/* Sidebar container */
+
+.sidebar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 272px;
+    height: 100vh;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    border-right: 1px solid #F1F1F3;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000; 
+    overflow-y: auto; 
+}
+
+.logo_container{
+    padding: 3.2rem 8.5rem 3.2rem 1.9rem;
+    border-bottom: 1px solid #F1F1F3;
+}
+.sidebar_header h2 {
+    font-size: 20px;
+    font-weight: 160;
+    letter-spacing: -5%;
+    padding: 4rem 6.2rem 4rem 2.8rem;
+
+}
+
+  
+ 
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 2.5rem;
+}
+  
+  
+.navLink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.6rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-weight: 100;
+    transition: background-color 0.3s;
+}
+  
+  
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+    transition: filter 0.3s;
+}
+  
+  
+.navLink:hover {
+    background-color:  #9b4fd4;
+    color: #FFFFFF;
+}
+
+.navLink:hover .icon {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(105%) contrast(106%);
+}
+  
+  
+.activeLink {
+    background-color: #6a0dad;
+    color: #FFFFFF;
+}
+
+.activeLink .icon {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(105%) contrast(106%);
+}
+
+.logOut_container {
+    padding: 8rem 15rem 2rem 2rem;
+    display: flex;
+    gap: 0.9rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: 120;
+    color: #1D2939;
+    font-size: 1.6rem;
+}
+  

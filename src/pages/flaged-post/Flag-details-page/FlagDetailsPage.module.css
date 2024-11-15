@@ -1,0 +1,90 @@
+.arrowBackicon {
+    padding: 24px 0;
+}
+
+.header h1{
+    font-size: 25px;
+    font-weight: 150;
+    line-height: 32px;
+}
+.header p {
+    font-weight: 150;
+    font-size: 18px;
+    line-height: 24px;
+    padding-top: 1.6rem;
+}
+.post_details{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 2rem;
+    margin-top: 3rem;
+    
+}
+.post_state {
+    height: 21.3rem;
+    width: 58.3rem;
+    border-radius: 1.2rem;
+    border: 1px solid #F1F1F3;
+    padding: 1.6rem 0.7rem;
+
+}
+
+.profile_header {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+}
+
+.profile_header img {
+    height: 4.4rem;
+    width: 4.4rem;
+    border-radius: 50px;
+}
+
+.profileName h2{
+    font-size: 1.8rem;
+    font-weight: 150;
+    line-height: 24px;
+}
+
+.profileName p{
+    font-size: 1.4rem;
+    font-weight: 100;
+}
+
+.dateTime {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+}
+.dateTime p {
+    font-size: 1.4rem;
+    font-weight: 100;
+}
+
+.user_details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 2.8rem;
+    padding-left: 1.1rem;
+}
+
+
+.user_details p {
+    color: #6A0DAD;
+    font-size: 1.4rem;
+    font-weight: 100;
+
+}
+
+
+
+.warning {
+    font-size: 1.4rem;
+    font-weight: 100;
+    color: #D92D20;
+    padding-top: 1rem;
+}

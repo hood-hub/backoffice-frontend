@@ -1,0 +1,17 @@
+.section_header {
+    margin: 2.3rem;
+}
+.section_header h2{
+    font-weight: 150;
+    font-size: 16px;
+}
+
+.overview_cards {
+    display: flex;
+    gap: 3.2rem;
+    padding-top: 2.3rem ;
+}
+
+.flaggedtable{
+    padding: 32px;
+}

@@ -1,0 +1,37 @@
+
+
+
+.section_header {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 6.7rem;
+}
+
+.section_header h2 {
+    font-size: 21px;
+    font-weight: 160;   
+}
+
+.section_header p{
+    font-size: 16px;
+    color: #6A0DAD;
+    font-weight: 120;
+}
+
+.noActivity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.6rem;
+    padding-top: 5.4rem;
+}
+
+.noActivity p{
+    font-size: 1.6rem;
+    font-weight: 120;
+}
+
+.activityCard {
+    padding-top: 2.8rem;
+}

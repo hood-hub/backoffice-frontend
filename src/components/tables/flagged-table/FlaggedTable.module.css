@@ -1,0 +1,184 @@
+.tableContainer {
+    padding: 16px ;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    /* Enhanced box shadow on both the top and bottom */
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05), 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+  .header_buttton {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.4rem;
+}
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    /* gap: 8px; */
+    margin-bottom: 16px;
+  }
+  
+  
+  .removeButton {
+    background-color: #FFFFFF;
+    border: 1px solid #D0D5DD;
+    padding: 6px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    width: 13.1rem;
+    height: 4.4rem;
+    font-size: 1.4rem;
+  }
+
+  .deleteButton {
+    width: 8.3rem;
+    height: 4.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 8px 8px;
+    background: #FFFFFF;
+    border-radius: 0.8rem;
+    border: 1px solid #D0D5DD;
+
+  }
+  
+  .deleteButton {
+    color: #ff4d4f;
+  }
+  
+  .removeButton {
+    color: #000;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+ 
+  .table th {
+    font-weight: 120;
+    font-size: 12px;
+    /* color: #333; */
+  }
+.title{
+    font-weight: 120;
+    font-size: 1.6rem;
+}
+
+.username {
+    font-size: 1.4rem;
+    font-weight: 100;
+}
+
+.flagdate{
+    font-size: 1.4rem;
+    font-weight: 100;
+}
+
+
+  
+  
+  .table input[type="checkbox"] {
+    cursor: pointer;
+  }
+  
+  .reason {
+    color: #ff4d4f;
+    background-color: #FEF3F2;
+    font-size: 1.2rem;
+    font-weight: 120;
+    border-radius: 1.6rem;
+    padding: 2px 8px;
+  }
+  
+  .status {
+    padding: 4px 8px;
+    border-radius: 16px;
+    font-weight: 120;
+    font-size: 1.2rem;
+
+  }
+  
+  .status.solved {
+    color: #027A48;
+    background-color: #ECFDF3;
+  }
+  
+  .status.pending {
+    color: #F79009;
+    background-color: #FFFAEB;
+  }
+  
+  
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  
+  .pageButton {
+    background: #FFFFFF;
+    border: 1px solid #D0D5DD;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #344054;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .pageButtonPrev {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #D0D5DD;
+    color: #344054;
+    border-radius: 8px;
+    gap: 0.8rem;
+    background: #FFFFFF;
+  }
+  
+  .pageNumbers {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .pageNumber {
+    padding: 8px 12px;
+    color: #333;
+    font-size: 1.4rem;
+    font-weight: 100;
+    cursor: pointer;
+  }
+  
+  .pageNumber.active {
+    font-weight: 100;
+    color: #7F56D9; 
+  }
+  
+  .clickableRow {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .clickableRow:hover {
+    background-color: #f9f9f9;
+  }
+  

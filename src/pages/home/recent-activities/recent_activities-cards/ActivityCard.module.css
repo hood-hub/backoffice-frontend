@@ -1,0 +1,37 @@
+.activity_card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.2s ease-in-out;
+}
+  
+.activity_card:hover {
+    background-color: #f5f5f5;
+}
+  
+.activity_card_content {
+    display: flex;
+    flex-direction: column;
+}
+  
+.activity_card h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.8rem;
+    font-weight: 150;
+}
+  
+.activity_card p {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 110;
+}
+  
+.activity_card_icon {
+    margin-left: auto;
+}
+  

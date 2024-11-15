@@ -1,0 +1,17 @@
+.addAdmin_form {
+    padding: 5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 3rem;
+}
+
+.addAdmin_input {
+    width: 40rem;
+}
+
+.fullWidthButton {
+    width: 20rem; 
+    border-radius: 5px;
+    height: 44px;
+}

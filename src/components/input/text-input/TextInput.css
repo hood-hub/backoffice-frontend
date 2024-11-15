@@ -1,0 +1,111 @@
+.form-group {
+    position: relative;
+  }
+  
+  .form-group label {
+    width: 100%;
+  }
+  
+  .form-group input {
+    height: 4.8rem;
+    border: 1.5px solid var(--col-grey-40);
+    padding: 1.5rem 1.2rem 0;
+    background: #ffffff;
+    border-radius: 0.6rem;
+    /* Text Styles */
+    color: var(--col-grey-100);
+    line-height: 2.4rem;
+    font-weight: 400;
+    font-size: 1.6rem;
+  }
+  
+  .form-group span.placeholder {
+    position: absolute;
+    opacity: 1;
+    margin: 1.2rem 0 0;
+    display: flex;
+    align-items: center;
+    column-gap: 0.2rem;
+    top: 0;
+    left: 1.2rem;
+    transition: all 0.2s;
+    background: none;
+    pointer-events: none;
+    /* Text Styles */
+    color: var(--col-grey-60);
+    line-height: 2.4rem;
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
+  
+  .form-group .required_star {
+    color: #cb1b1b;
+    font-size: 1.4rem;
+    transform: translateY(2px);
+  }
+  
+  /* Translate animation on inputs of all types and forms */
+  .not-empty-input + span.placeholder,
+  .form-group input:focus + span.placeholder,
+  .form-group textarea:focus + span.placeholder,
+  .form-group input[type="date"] + span.placeholder {
+    transform: scale(1) translateY(-1rem) translateX(0);
+    background: transparent;
+    font-size: 1.2rem;
+  }
+  
+  .form-group textarea:focus + span.placeholder {
+    background-color: #ffffff;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border: 1.5px solid var(--col-primary-main) !important;
+  }
+  
+  /* Password Input */
+  /* Password Input */
+  .form-group p.password_toggle {
+    position: absolute !important;
+    top: 1.7rem;
+    right: 1.2rem;
+    /* Text */
+    color: #747171;
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.6rem; /* 133.333% */
+    cursor: pointer;
+  }
+  
+  .disabled-text-input {
+    cursor: not-allowed;
+  }
+  
+  .form-group input:disabled,
+  .form-group select:disabled,
+  .form-group textarea:disabled {
+    background: #e8ebed;
+    opacity: 1;
+  }
+  
+  /* Secondary Form Group */
+  .secondary-form-group input {
+    height: 4.8rem;
+    border: 1.5px solid var(--col-grey-20);
+    padding: 0 1.2rem;
+    background: #ffffff;
+    border-radius: 0.6rem;
+    /* Text Styles */
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    color: var(--col-grey-100);
+  }
+  
+  .secondary-form-group input:focus {
+    outline: none;
+    border-color: var(--col-primary-main);
+  }
+  
