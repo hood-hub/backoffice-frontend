@@ -1,7 +1,7 @@
 export const activities =
 [
     {
-        title: 'All User’s Report', 
+        title: 'All Users Report', 
         subtitle: 'Download complete user list.', 
         redirectTo: '/activity/1' 
     },
@@ -11,13 +11,13 @@ export const activities =
         redirectTo: '/activity/2' 
     },
     { 
-        title: 'Groups by location', 
+        title: 'All Groups Report', 
         subtitle: 'Group distribution data.', 
         redirectTo: '/activity/3' 
     },
     { 
         title: 'Flagged Posts', 
         subtitle: 'History of moderated content.', 
-        redirectTo: '/activity/3' 
+        redirectTo: '/activity/4' 
     },
 ];

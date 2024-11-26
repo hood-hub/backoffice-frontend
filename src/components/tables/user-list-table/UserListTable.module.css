@@ -1,0 +1,176 @@
+.tableContainer {
+    margin-top: 16px;
+    padding: 16px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tableHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .tableHeader h2{
+    font-size: 1.8rem;
+  }
+  
+  .actions  {
+    /* margin-left: 8px; */
+   
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+  }
+  
+  .filterButton {
+    background-color: #FFFFFF;
+    color: #344054;
+    border-radius: 8px;
+    padding: 4px 8px;
+    width: 8.3rem;
+    height: 4.4rem;
+    font-weight: 100;
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    border: 1px solid #D0D5DD;
+  }
+  
+  .exportButton {
+    background-color: #FFFFFF;
+    color: #344054;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-weight: 100;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 4.4rem;
+    width: 10.6rem;
+    border: 1px solid #D0D5DD;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+.table th {
+    font-weight: 120;
+    font-size: 1.2rem;
+    color: #475467;
+}
+  
+  .userCell {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+.usernameEmail{
+    display: flex;
+    flex-direction: column;
+}
+  .userName {
+    font-weight: 120;
+    font-size: 1.6rem;
+  }
+  
+  .userEmail {
+    font-size: 1.4rem;
+    font-weight: 100;
+    color: #6b7280;
+  }
+
+.userNamemain {
+    color: #475467;
+    font-size: 1.4rem;
+    font-weight: 100;
+}
+
+.location {
+    font-size: 1.4rem;
+    font-weight: 100;
+}
+  
+  .activeStatus {
+    color: #027A48;
+    background-color: #ECFDF3;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: 120;
+  }
+  
+  .pendingStatus {
+    color: #F79009;
+    background-color: #FFFAEB;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: 120;
+  }
+  
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  
+  .pageButton {
+    background: #FFFFFF;
+    border: 1px solid #D0D5DD;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #344054;
+    font-size: 1.4rem;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .pageButtonPrev {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #D0D5DD;
+    color: #344054;
+    border-radius: 8px;
+    gap: 0.8rem;
+    background: #FFFFFF;
+  }
+  
+  .pageNumbers {
+    display: flex;
+    gap: 9px;
+}
+  
+.pageNumber {
+    background-color: #FFFFFF;
+    color: #667085;
+    padding: 4px 8px;
+    font-size: 1.4rem;
+    font-weight: 100;
+    border: none;
+   
+}
+  

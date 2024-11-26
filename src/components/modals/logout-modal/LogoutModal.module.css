@@ -1,0 +1,81 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    width: 400px;
+  }
+.logoutImg_container{
+    justify-content: flex-start;
+    display: flex;
+}
+.modal h3{
+
+    padding: 2rem 0;
+    font-size: 1.8rem;
+    font-weight: 170;
+}
+
+.modal p {
+    font-size: 1.4rem;
+    font-weight: 100;
+}
+  .modalActions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .confirmButton {
+    background: red;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+.ConfirmButton{
+    background: #D92D20;
+    color: white;
+    border: none;
+    width: 17.0rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.ConfirmButton:hover {
+    background: #dd9893;
+}
+  
+.CancelButton {
+    background: #FFFFFF;
+    color: #344054;
+    border: 1px solid #D0D5DD;
+    padding: 10px 20px;
+    width: 17.0rem;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.CancelButton:hover {
+    background: hsl(0, 8%, 71%);
+}
+
+
+  

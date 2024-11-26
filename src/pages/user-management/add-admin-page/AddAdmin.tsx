@@ -1,35 +1,70 @@
-import { useState } from 'react';
-import Header from '../../../components/header/Header';
-import Input from '../../../components/input/Input';
-import styles from './AddAdmin.module.css';
-import PrimaryButton from '../../../components/buttons/primary-button/PrimaryButton';
+import { useState } from "react";
+import Header from "../../../components/header/Header";
+import Input from "../../../components/input/Input";
+import styles from "./AddAdmin.module.css";
+import PrimaryButton from "../../../components/buttons/primary-button/PrimaryButton";
+import apiClient from "../../../utils/apiClient";
+import AddAdminModal from "../../../components/modals/add-admin-modal/AddAdminModal";
+
 
 const AddAdmin = () => {
   // State variables for form inputs
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(''); // Error message if needed
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  // Success message to display in the modal
+  const [modalMessage, setModalMessage] = useState("A message has been sent to your email address].");
 
   // Function to handle form submission
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Simple validation
     if (!firstName || !lastName || !email || !password) {
       setError("All fields are required.");
       return;
     }
 
-    // Additional validation for email format could go here
     if (!/\S+@\S+\.\S+/.test(email)) {
       setError("Please enter a valid email address.");
       return;
     }
 
-    // Clear any existing error and proceed with submission logic
-    setError('');
-    // Add admin data submission logic here (e.g., API call)
-    console.log("Admin data submitted:", { firstName, lastName, email, password });
+    // Clear previous error
+    setError(null);
+
+    try {
+      setLoading(true);
+
+      // API request to create admin
+      const response = await apiClient.post("/user/admin", {
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+
+      // Show success modal
+      const { message } = response.data;
+      setModalMessage(`${message}. Email: ${email}, Password: ${password}`);
+      setIsModalVisible(true);
+
+      // Clear form inputs
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.message || "Failed to create admin.";
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -40,7 +75,7 @@ const AddAdmin = () => {
           <div className={styles.addAdmin_form_left}>
             <Input
               label="First Name"
-              type="text" 
+              type="text"
               name="firstName"
               placeholder="Enter your First Name"
               value={firstName}
@@ -49,7 +84,7 @@ const AddAdmin = () => {
             />
             <Input
               label="Last Name"
-              type="text" 
+              type="text"
               name="lastName"
               placeholder="Enter your Last Name"
               value={lastName}
@@ -65,7 +100,6 @@ const AddAdmin = () => {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              error={error && email === "" ? error : ""}
               className={styles.addAdmin_input}
             />
             <Input
@@ -78,10 +112,23 @@ const AddAdmin = () => {
               className={styles.addAdmin_input}
             />
           </div>
-          {error && <p className={styles.errorText}>{error}</p>}
         </div>
-        <PrimaryButton label="Submit" onClick={handleSubmit} className={styles.fullWidthButton} />
+        {error && <p className={styles.errorText}>{error}</p>}
+        <PrimaryButton
+          label={loading ? "Submitting..." : "Submit"}
+          onClick={handleSubmit}
+          className={styles.fullWidthButton}
+          disabled={loading}
+        />
       </div>
+
+      {/* AddAdminModal Component */}
+      {isModalVisible && (
+        <AddAdminModal
+          message={modalMessage}
+          onClose={() => setIsModalVisible(false)}
+        />
+      )}
     </section>
   );
 };

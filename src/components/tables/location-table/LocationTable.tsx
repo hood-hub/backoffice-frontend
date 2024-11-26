@@ -1,47 +1,75 @@
-import React, { useState } from "react";
-import styles from "./LocationTable.module.css"; 
+import React, { useEffect, useState } from "react";
+import styles from "./LocationTable.module.css";
 import PrimarySearchInput from "../../input/search-input/PrimarySearchInput";
-import downloadIcon from '../../../assets/svg/button-icon/material-symbols_download (1).svg'
-import rightArrow from '../../../assets/svg/table-icons/arrow-right.svg'
-import leftArrow from '../../../assets/svg/table-icons/arrow-left.svg'
+import downloadIcon from '../../../assets/svg/button-icon/material-symbols_download (1).svg';
+import rightArrow from '../../../assets/svg/table-icons/arrow-right.svg';
+import leftArrow from '../../../assets/svg/table-icons/arrow-left.svg';
+import apiClient from '../../../utils/apiClient';
+
+// Define the User interface for the API response
+interface User {
+  stringAddress?: string;
+  isVerified: boolean;
+}
+
+// Define the LocationData interface for the transformed data
 interface LocationData {
   area: string;
   totalUsers: number;
   activeUsers: number;
-  growthRate: string;
-  density: string;
 }
 
-const mockData: LocationData[] = [
-  { area: "Downtown", totalUsers: 1250, activeUsers: 1250, growthRate: "+15%", density: "High" },
-  { area: "Downtown", totalUsers: 1250, activeUsers: 1250, growthRate: "+30%", density: "Medium" },
-  { area: "Downtown", totalUsers: 1250, activeUsers: 1250, growthRate: "+2%", density: "High" },
-  { area: "Downtown", totalUsers: 1250, activeUsers: 1250, growthRate: "+15%", density: "Medium" },
-  { area: "Downtown", totalUsers: 1250, activeUsers: 1250, growthRate: "+15%", density: "Medium" },
-  { area: "Downtown", totalUsers: 1250, activeUsers: 1250, growthRate: "+30%", density: "High" },
-  { area: "Downtown", totalUsers: 1250, activeUsers: 1250, growthRate: "+2%", density: "Medium" },
-  { area: "Downtown", totalUsers: 1250, activeUsers: 1250, growthRate: "+15%", density: "High" },
-];
-
 const LocationTable: React.FC = () => {
+  const [data, setData] = useState<LocationData[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [totalPages, setTotalPages] = useState<number>(0);
+
   const itemsPerPage = 5;
 
-  const filteredData = mockData.filter((data) =>
-    data.area.toLowerCase().includes(searchQuery.toLowerCase())
+  useEffect(() => {
+    const fetchLocations = async () => {
+      setLoading(true);
+      try {
+        const response = await apiClient.get(`/user/get-all?page=${currentPage}`);
+
+        // Extract data from the API response
+        const { users, totalPages } = response.data.data;
+
+        // Transform the user data into location-based data
+        const transformedData: LocationData[] = users.map((user: User) => ({
+          area: user.stringAddress || "Unknown",
+          totalUsers: 1, // Each user contributes to the total count
+          activeUsers: user.isVerified ? 1 : 0, // Active if the user is verified
+        }));
+
+        setData(transformedData);
+        setTotalPages(totalPages);
+      } catch (error) {
+        console.error("Failed to fetch location data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLocations();
+  }, [currentPage]);
+
+  // Filter data based on the search query
+  const filteredData = data.filter((location) =>
+    location.area.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Paginate the filtered data
   const paginatedData = filteredData.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-    setCurrentPage(1); // Reset to first page when search changes
+    setCurrentPage(1); // Reset to the first page when the search query changes
   };
 
   return (
@@ -50,7 +78,7 @@ const LocationTable: React.FC = () => {
         <h2>Location Details</h2>
         <div className={styles.searchExportContainer}>
           <PrimarySearchInput
-            placeholder="Search users locations ... "
+            placeholder="Search users locations..."
             value={searchQuery}
             onChange={handleSearch}
             className={styles.searchInput}
@@ -62,67 +90,66 @@ const LocationTable: React.FC = () => {
         </div>
       </div>
 
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th><input type="checkbox" /></th>
-            <th>Areas</th>
-            <th>Total Users</th>
-            <th>Active Users</th>
-            <th>Growth Rate</th>
-            <th>Density</th>
-          </tr>
-        </thead>
-        <tbody>
-          {paginatedData.map((location, index) => (
-            <tr key={index}>
-              <td><input type="checkbox" /></td>
-              <td className={styles.areaColumn}>{location.area}</td>
-              <td>{location.totalUsers}</td>
-              <td>{location.activeUsers}</td>
-              <td className={styles.growthRate}>
-                <span className={location.growthRate.startsWith('+') ? styles.positive : styles.negative}>
-                  {location.growthRate}
-                </span>
-              </td>
-              <td>
-                <span className={`${styles.density} ${styles[location.density.toLowerCase()]}`}>
-                  {location.density}
-                </span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th><input type="checkbox" /></th>
+                <th>Areas</th>
+                <th>Total Users</th>
+                <th>Active Users</th>
+              </tr>
+            </thead>
+            <tbody>
+              {paginatedData.length > 0 ? (
+                paginatedData.map((location, index) => (
+                  <tr key={index}>
+                    <td><input type="checkbox" /></td>
+                    <td className={styles.areaColumn}>{location.area}</td>
+                    <td>{location.totalUsers}</td>
+                    <td>{location.activeUsers}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={4}>No data found</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
 
-      <div className={styles.pagination}>
-        <button
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-            <img src={leftArrow} alt="" />
-          Previous
-        </button>
-        <div className={styles.pageNumbers}>
-          {Array.from({ length: totalPages }, (_, i) => (
+          <div className={styles.pagination}>
             <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={currentPage === i + 1 ? styles.activePage : ""}
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
             >
-              {i + 1}
+              <img src={leftArrow} alt="" />
+              Previous
             </button>
-          ))}
-        </div>
-        <button
-          onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-         
-          Next
-          <img src={rightArrow} alt="" />
-        </button>
-      </div>
+            <div className={styles.pageNumbers}>
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={currentPage === i + 1 ? styles.activePage : ""}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next
+              <img src={rightArrow} alt="" />
+            </button>
+          </div>
+        </>
+      )}
     </section>
   );
 };

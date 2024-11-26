@@ -34,6 +34,44 @@
     height: 1.8rem;
 }
 
+.changeDpBtn {
+    padding-top: 2rem;
+}
+
+
+.changeDpBtn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+  }
+  
+  
+  .changeDpLabel {
+    cursor: pointer;
+    width: 30rem;
+    background-color: #6A0DAD;  
+    color: white;
+    padding: 8px 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 120;
+    font-size: 16px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+
+  .hidden {
+    display: hidden;
+  }
+  
+  .changeDpLabel:hover {
+    background-color: #7a00b3; 
+  }
+  
+  
+
+
 .form_header{
     font-size: 2.1rem;
     font-weight: 160;
@@ -62,8 +100,8 @@
     background-color: #FFFFFF;
     border: 1px solid #667085;
     color: #6A0DAD;
-    margin-top: 24.4rem;
-    margin-bottom: 8rem;
+    margin-top: 8rem;
+    /* margin-bottom: 8rem; */
 }
 
 .editProfileButton:hover {

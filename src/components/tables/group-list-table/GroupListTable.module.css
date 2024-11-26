@@ -1,0 +1,101 @@
+.tableContainer {
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tableHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .filterButton, .exportButton {
+    background-color: #FFFFFF;
+    color: #344054;
+    border-radius: 8px;
+    padding: 4px 8px;
+    width: 8.3rem;
+    height: 4.4rem;
+    font-weight: 100;
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    border: 1px solid #D0D5DD;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eaeaea;
+  }
+  .table th{
+    font-size: 1.2rem;
+    font-weight: 120;
+  }
+.groupName{
+    font-weight: 120;
+    font-size: 1.6rem;
+}
+.groupMembers {
+    font-weight: 120;
+    font-size: 1.2rem;
+}
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+  }
+  .pageButtonPrev {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #D0D5DD;
+    color: #344054;
+    border-radius: 8px;
+    gap: 0.8rem;
+    background: #FFFFFF;
+  }
+  
+  
+.pageNumber {
+    padding: 8px 12px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.pageButton{
+    background: #FFFFFF;
+    border: 1px solid #D0D5DD;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #344054;
+    font-size: 1.4rem;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;  
+}
+  
+  .pageNumber {
+    margin: 0 4px;
+  }
+  

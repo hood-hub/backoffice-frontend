@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './Cards.module.css';
 
 interface CardProps {
-  icon: string;      // Path to the icon image
-  title: string;     // Title text for the card
-  figure: string;    // Figure or value to display
+  icon: string;      
+  title: string;     
+  figure: string;    
 }
 
 const Cards: React.FC<CardProps> = ({ icon, title, figure }) => {

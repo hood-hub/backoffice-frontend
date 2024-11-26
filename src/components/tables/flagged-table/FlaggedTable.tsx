@@ -1,31 +1,68 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './FlaggedTable.module.css';
-import deleteicon from '../../../assets/svg/button-icon/fluent_delete-20-regular.svg';
-import cancelIcon from '../../../assets/svg/button-icon/hugeicons_cancel-01.svg';
-import arrowleft from '../../../assets/svg/table-icons/arrow-left.svg';
-import arrowright from '../../../assets/svg/table-icons/arrow-right.svg';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./FlaggedTable.module.css";
+import deleteIcon from "../../../assets/svg/button-icon/fluent_delete-20-regular.svg";
+import cancelIcon from "../../../assets/svg/button-icon/hugeicons_cancel-01.svg";
+import arrowLeft from "../../../assets/svg/table-icons/arrow-left.svg";
+import arrowRight from "../../../assets/svg/table-icons/arrow-right.svg";
+import apiClient from "../../../utils/apiClient";
+import loadingIcon from "../../../assets/svg/table-icons/Dual Ball@1x-1.0s-200px-200px.svg";
 
-interface Flag {
-  title: string;
-  userName: string;
-  dateFlagged: string;
-  reason: string;
-  status: 'Solved' | 'Pending';
+interface User {
+  firstName: string;
+  lastName: string;
+  username: string;
 }
 
-const flags: Flag[] = [
-  { title: 'Inappropriate content in community', userName: 'John_doe', dateFlagged: '2024-03-15 00:43am', reason: 'Violates Community Rule', status: 'Solved' },
-  { title: 'Harassment report in comments', userName: 'Jane_Smith', dateFlagged: '2024-03-15 00:43am', reason: 'Spam', status: 'Pending' },
-  { title: 'Inappropriate content in community', userName: 'USER123', dateFlagged: '2024-03-15 00:43am', reason: 'Harassment', status: 'Pending' },
-];
+interface Post {
+  _id: string;
+  text: string;
+  flagReason: string;
+  flaggedAt: string;
+  userId: User;
+  isFlaggedResolved: boolean;
+}
 
 const FlaggedTable: React.FC = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleRowClick = (flag: Flag) => {
-    navigate(`/flag-details/${encodeURIComponent(flag.title)}`);
+  // Fetch flagged posts
+  useEffect(() => {
+    const fetchFlaggedPosts = async () => {
+      try {
+        const response = await apiClient.get("/post/get-flagged");
+        const fetchedPosts: Post[] = response.data.data.posts;
+        setPosts(fetchedPosts);
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+        setError("Failed to load flagged posts. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFlaggedPosts();
+  }, []);
+
+  // Navigate to flag details page with full post object (if needed)
+  const handleRowClick = (post: Post) => {
+    navigate(`/flag-details/${post._id}`, { state: { post } });
   };
+
+  if (loading) {
+    return (
+      <div className={styles.anime}>
+        <img src={loadingIcon} alt="Loading..." />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className={styles.error}>{error}</p>;
+  }
 
   return (
     <div className={styles.tableContainer}>
@@ -33,7 +70,7 @@ const FlaggedTable: React.FC = () => {
         <h2>Recent Flags</h2>
         <div className={styles.header_buttton}>
           <button className={styles.deleteButton}>
-            <img src={deleteicon} alt="Delete" />
+            <img src={deleteIcon} alt="Delete" />
             Delete
           </button>
           <button className={styles.removeButton}>
@@ -46,27 +83,41 @@ const FlaggedTable: React.FC = () => {
       <table className={styles.table}>
         <thead>
           <tr>
-            <th><input type="checkbox" /></th>
-            <th>Post Title</th>
-            <th>User Names</th>
+            <th>
+              <input type="checkbox" />
+            </th>
+            <th>Post Text</th>
+            <th>Username</th>
             <th>Date Flagged</th>
             <th>Reason</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {flags.map((flag, index) => (
-            <tr key={index} onClick={() => handleRowClick(flag)} className={styles.clickableRow}>
-              <td><input type="checkbox" /></td>
-              <td className={styles.title}>{flag.title}</td>
-              <td className={styles.username}>{flag.userName}</td>
-              <td className={styles.flagdate}>{flag.dateFlagged}</td>
+          {posts.map((post) => (
+            <tr
+              key={post._id}
+              onClick={() => handleRowClick(post)}
+              className={styles.clickableRow}
+            >
+              <td>
+                <input type="checkbox" />
+              </td>
+              <td className={styles.title}>{post.text}</td>
+              <td className={styles.username}>{`${post.userId.firstName} ${post.userId.lastName}`}</td>
+              <td className={styles.flagdate}>
+                {new Date(post.flaggedAt).toLocaleString()}
+              </td>
               <td className={styles.flagreason}>
-                <span className={styles.reason}>{flag.reason}</span>
+                <span className={styles.reason}>{post.flagReason}</span>
               </td>
               <td>
-                <span className={`${styles.status} ${styles[flag.status.toLowerCase()]}`}>
-                  {flag.status}
+                <span
+                  className={`${styles.status} ${
+                    styles[post.isFlaggedResolved ? "solved" : "pending"]
+                  }`}
+                >
+                  {post.isFlaggedResolved ? "Resolved" : "Pending"}
                 </span>
               </td>
             </tr>
@@ -76,7 +127,7 @@ const FlaggedTable: React.FC = () => {
 
       <div className={styles.pagination}>
         <button className={styles.pageButtonPrev}>
-          <img src={arrowleft} alt="Previous" />
+          <img src={arrowLeft} alt="Previous" />
           Previous
         </button>
         <div className={styles.pageNumbers}>
@@ -86,7 +137,7 @@ const FlaggedTable: React.FC = () => {
         </div>
         <button className={styles.pageButton}>
           Next
-          <img src={arrowright} alt="Next" />
+          <img src={arrowRight} alt="Next" />
         </button>
       </div>
     </div>

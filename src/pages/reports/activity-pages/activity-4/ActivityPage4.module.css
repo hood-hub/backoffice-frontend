@@ -1,0 +1,19 @@
+.arrowBackicon {
+    padding: 24px 0;
+    
+}
+
+.arrowBackicon img{
+    cursor: pointer;
+}
+
+.section_header h2{
+    font-weight: 150;
+    font-size: 16px;
+}
+
+.overview_cards {
+    display: flex;
+    gap: 3.2rem;
+    padding-top: 2.3rem ;
+}

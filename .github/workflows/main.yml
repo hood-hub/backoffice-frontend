@@ -12,7 +12,7 @@ on:
 jobs:
   vercel: 
     runs-on: ubuntu-latest
-    name: "Deploy HoodHub Backoffice Frontend"
+    name: "Deploy HoodHub BackOffice"
     
     steps:
       - uses: actions/checkout@v2
