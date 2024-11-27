@@ -9,7 +9,7 @@ import styles from './UserManagement.module.css'
 const UserManagement = () => {
   // State for searched value and admin data
   const [searchedValue, setSearchedValue] = useState<string>("");
-  const [admins, setAdmins] = useState([]); 
+  const [admins, setAdmins] = useState<any[]>([]); 
   const [loading, setLoading] = useState<boolean>(true); 
   const [error, setError] = useState<string | null>(null); 
 
@@ -54,11 +54,10 @@ const UserManagement = () => {
         <div className={styles.anime}>
           <img src={lodingIcon} alt="" />
         </div>
-        
       ) : error ? (
         <p className="error">{error}</p>
       ) : (
-        <AdminTable users={admins} />
+        <AdminTable users={admins} setAdmins={setAdmins} />
       )}
     </section>
   );

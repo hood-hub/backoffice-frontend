@@ -3,12 +3,12 @@ export const activities =
     {
         title: 'All Users Report', 
         subtitle: 'Download complete user list.', 
-        redirectTo: '/activity/1' 
+        redirectTo: '/activity/2' 
     },
     { 
         title: 'Users by location', 
         subtitle: 'Geographic distribution.', 
-        redirectTo: '/activity/2' 
+        redirectTo: '/activity/1' 
     },
     { 
         title: 'All Groups Report', 
